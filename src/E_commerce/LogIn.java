@@ -32,17 +32,10 @@ public class LogIn {
 				String username = rs.getString(1);
 				
 				Username=username;
-				
-			//System.out.println("User name is  "+Username);
-				
+				//System.out.println("User name is  "+Username);	
 			}
 			LogIn.UserNameValidation();
-//			if(Username!=null) {System.out.println("User name is  "+Username);}
-//			else
-//			{
-//				System.out.println("Ops username id not registered entre correct username");
-//			LogIn.main(null);
-//			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +46,7 @@ public class LogIn {
 	{
 		
 		if(Username!=null)
-		{System.out.println("User name is  "+Username);
+		{
 		LogIn.Password();
 		}
 		else
@@ -78,7 +71,7 @@ public class LogIn {
 			
 			
 			Password=password;
-			System.out.println("this is password "+Password);
+			//System.out.println("this is password "+Password);
 			
 		//System.out.println("User name is  "+Username);
 			
@@ -94,13 +87,15 @@ public class LogIn {
 		
 		if(Password.equals(passs)) {
 			System.out.println("PassWord is  "+Password);
-			System.out.println("login succesfull");
+			System.out.println("************ login succesfull ************");
+			ProductDetails.main(null);
 		}
 		else
 		{
-			System.out.println("Ops Password is incorrect please entre corret pass");
-		LogIn.main(null);
-		}
+			System.out.println("Ops Password is incorrect please entre corret password");
+		//LogIn.main(null);
+			//PasswordValidation();
+			Password();		}
 		
 	}
 
