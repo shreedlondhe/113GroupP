@@ -17,6 +17,8 @@ public class ProductBill {
        
       ProductBill(int id,  int qty, double price, double totalPrice)   
      {  
+    	  
+    	  // product bill
          this.id=id;  
          this.pname = pname;  
          this.qty = qty;  
