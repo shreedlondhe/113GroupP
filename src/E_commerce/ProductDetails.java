@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ProductDetails {
-	
+	static String ProctName;
 	public static void main(String[] args) {
 		ShowProduct();
 		BuyOption();
@@ -15,9 +15,17 @@ public class ProductDetails {
 	
 	public static void productdetails(int Id)
 	{PreparedStatement stmt=null;
+	PreparedStatement GetProductName=null;
 		try {
+			GetProductName = Connections.connection().prepareStatement("select ProductName from productdetails where productId='"+Id+"'");
+			ResultSet ProductName = GetProductName.executeQuery();
+			while(ProductName.next())
+			{
+			String productname = ProductName.getString(1);
+			ProctName=productname;
+			}
 		 stmt = Connections.connection().prepareStatement("select * from productdetails where productId='"+Id+"'");
-		 
+		  
 		 ResultSet AllProducts = stmt.executeQuery();
 		 System.out.println(" Product Details");
 		 while(AllProducts.next())
@@ -105,7 +113,12 @@ public class ProductDetails {
 			int Number=sc.nextInt();
 		switch (Number) 
 		{
-		case 1:System.out.println("Added to cart");
+		case 1:{
+			AddToCart.addtocart();
+			    System.out.println("*********** Added to cart **********"); 
+			    System.out.println("Thanks for Shopping");
+			    ShowProduct();
+			   }
 		break;
 		case 2:{
 			     
@@ -118,5 +131,28 @@ public class ProductDetails {
 		}
 		}
 	}
-	
-}
+	public static void productdetailsAll()
+	{
+		PreparedStatement stmt=null;
+		try {
+		 stmt = Connections.connection().prepareStatement("select * from productdetails");
+		 
+		 ResultSet AllProducts = stmt.executeQuery();
+		 System.out.println(" Product");
+		 while(AllProducts.next())
+		 {
+			 
+			 System.out.println("Product ID="+AllProducts.getString(1)+" ");
+				System.out.println("ProductName="+AllProducts.getString(2)+" ");
+				System.out.println("ProductDescription="+AllProducts.getString(3)+" ");
+				System.out.println("AvailableQuantity="+AllProducts.getString(4)+" ");
+				System.out.println("Price="+AllProducts.getString(5)+" ");
+				System.out.println();
+				System.out.println("             ");
+		 }		 
+		 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}}

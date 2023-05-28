@@ -1,6 +1,7 @@
 package E_commerce;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class AddUser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("please tell your First Name");
@@ -45,7 +47,7 @@ public class AddUser {
 			String mobilenumber = sc.next();
 			stmt.setString(7, mobilenumber);
 			int i = stmt.executeUpdate();
-			System.out.println("*** User register sucsessfully ***");
+			System.out.println("***** User register sucsessfully *****");
 			System.out.println("Please Login To continue");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,5 +67,23 @@ public class AddUser {
 			e.printStackTrace();
 		}
 
+	}
+	public static void showUser() {
+		PreparedStatement stmt = null;
+		try {
+			stmt = Connections.connection().prepareStatement("select * from users");
+			ResultSet Alluser = stmt.executeQuery();
+		 System.out.println(" Product");
+		 while(Alluser.next())
+		 {
+			 
+			 System.out.println("user name="+Alluser.getString(1)+" ");
+			 //System.out.println("password="+Alluser.getString(2)+" ");
+		 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

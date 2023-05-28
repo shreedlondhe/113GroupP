@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LogIn {
-	static String Username=null;
+	public static String Username;
 	static String Password=null;
 	static String User=null;
 	static PreparedStatement stmt=null;
@@ -88,7 +88,7 @@ public class LogIn {
 		if(Password.equals(passs)) {
 			System.out.println("PassWord is  "+Password);
 			System.out.println("************ login succesfull ************");
-			ProductDetails.main(null);
+			//ProductDetails.main(null);
 		}
 		else
 		{
